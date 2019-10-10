@@ -1,5 +1,3 @@
-
-
 def isWordGuessed(secretWord, lettersGuessed):
     """
     secretWord: string, the word the user is guessing

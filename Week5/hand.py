@@ -4,7 +4,7 @@ import random
 class Hand(object):
     def __init__(self, n):
         """
-        Initialize a Hand.a
+        Initialize a Hand.
 
         n: integer, the size of the hand.
         """

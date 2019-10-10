@@ -1,4 +1,4 @@
-from ps4.ps4a import *
+from ProblemSet4.ps4a import *
 
 
 #
