@@ -36,13 +36,13 @@ def is_word(word_list, word):
     Returns: True if word is in word_list, False otherwise
 
     Example:
-    >>> is_word(word_list, 'bat') returns
+    >>> is_word(word_list, 'bat') return
     True
-    >>> is_word(word_list, 'asdf') returns
+    >>> is_word(word_list, 'asdf') return
     False
     """
     word = word.lower()
-    word = word.strip(" !@#$%^&*()-_+={}[]|\:;'<>?,./\"")
+    word = word.strip(r" !@#$%^&*()-_+={}[]|\:;'<>?,.\"")
     return word in word_list
 
 
@@ -74,6 +74,7 @@ class Message(object):
         """
         self.message_text = text
         self.valid_words = load_words(WORDLIST_FILENAME)
+        self.shiftDict = {}
 
     # DO NOT MODIFY THIS METHOD ###
     def get_message_text(self):
@@ -107,7 +108,16 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to
                  another letter (string).
         """
-        pass  # delete this line and replace with your code here
+
+        for i in range(len(string.ascii_lowercase)):
+            if i <= 25 - shift:
+                self.shiftDict[string.ascii_lowercase[i]] = string.ascii_lowercase[i + shift]
+                self.shiftDict[string.ascii_uppercase[i]] = string.ascii_uppercase[i + shift]
+            else:
+                self.shiftDict[string.ascii_lowercase[i]] = string.ascii_lowercase[i - 26 + shift]
+                self.shiftDict[string.ascii_uppercase[i]] = string.ascii_uppercase[i - 26 + shift]
+
+        return self.shiftDict
 
     def apply_shift(self, shift):
         """
@@ -121,7 +131,7 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         """
-        pass  # delete this line and replace with your code here
+        # TODO
 
 
 class PlaintextMessage(Message):
@@ -142,6 +152,7 @@ class PlaintextMessage(Message):
         Hint: consider using the parent class constructor so less
         code is repeated
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
     def get_shift(self):
@@ -150,6 +161,7 @@ class PlaintextMessage(Message):
 
         Returns: self.shift
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
     def get_encrypting_dict(self):
@@ -158,6 +170,7 @@ class PlaintextMessage(Message):
 
         Returns: a COPY of self.encrypting_dict
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
     def get_message_text_encrypted(self):
@@ -166,6 +179,7 @@ class PlaintextMessage(Message):
 
         Returns: self.message_text_encrypted
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
     def change_shift(self, shift):
@@ -179,6 +193,7 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
 
@@ -193,6 +208,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
     def decrypt_message(self):
@@ -211,6 +227,7 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         """
+        # TODO
         pass  # delete this line and replace with your code here
 
 
