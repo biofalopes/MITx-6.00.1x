@@ -6,11 +6,14 @@ import time
 def timeIt(func):
     @functools.wraps(func)
     def newfunc(*args, **kwargs):
-        startTime = time.time()
-        func(*args, **kwargs)
-        elapsedTime = time.time() - startTime
-        print('function [{}] finished in {} ms'.format(
-            func.__name__, int(elapsedTime * 1000)))
+        if not hasattr(newfunc, '_entered'):
+            newfunc._entered = True
+            startTime = time.time()
+            func(*args, **kwargs)
+            elapsedTime = time.time() - startTime
+            print('function [{}] finished in {} ms'.format(
+                func.__name__, int(elapsedTime * 1000)))
+            del newfunc._entered
     return newfunc
 
 
@@ -44,7 +47,6 @@ def mergeSort(L):
 
 @timeIt
 def selectionSort(L):
-    iterations = 0
     for fillslot in range(len(L) - 1, 0, -1):
         positionOfMax = 0
         for location in range(1, fillslot + 1):
@@ -53,13 +55,10 @@ def selectionSort(L):
         temp = L[fillslot]
         L[fillslot] = L[positionOfMax]
         L[positionOfMax] = temp
-        iterations += 1
-    print("selectionSort Iterations: " + str(iterations))
 
 
 @timeIt
 def bubbleSort(L):
-    iterations = 0
     elem = len(L) - 1
     issorted = False
     while not issorted:
@@ -67,13 +66,11 @@ def bubbleSort(L):
         for i in range(elem):
             if L[i] > L[i + 1]:
                 L[i], L[i + 1] = L[i + 1], L[i]
-                iterations += 1
                 issorted = False
-    print("bubbleSort Iterations: " + str(iterations))
 
 
-randomList = random.sample(range(10000), 10000)
+randomList = random.sample(range(100000), 100000)
 
 mergeSort(randomList.copy())
 selectionSort(randomList.copy())
-# bubbleSort(randomList.copy())
+bubbleSort(randomList.copy())
