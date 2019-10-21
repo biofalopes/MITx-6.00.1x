@@ -47,14 +47,12 @@ def mergeSort(L):
 
 @timeIt
 def selectionSort(L):
-    for fillslot in range(len(L) - 1, 0, -1):
-        positionOfMax = 0
-        for location in range(1, fillslot + 1):
-            if L[location] > L[positionOfMax]:
-                positionOfMax = location
-        temp = L[fillslot]
-        L[fillslot] = L[positionOfMax]
-        L[positionOfMax] = temp
+    for i in range(0, len(L)):
+        min_i = i
+        for right in range(i + 1, len(L)):
+            if L[right] < L[min_i]:
+                min_index = right
+    L[i], L[min_i] = L[min_i], L[i]
 
 
 @timeIt
@@ -69,7 +67,7 @@ def bubbleSort(L):
                 issorted = False
 
 
-randomList = random.sample(range(100000), 100000)
+randomList = random.sample(range(50000), 50000)
 
 mergeSort(randomList.copy())
 selectionSort(randomList.copy())
