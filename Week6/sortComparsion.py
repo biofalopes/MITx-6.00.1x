@@ -2,7 +2,6 @@ import random
 import functools
 import time
 
-
 def timeIt(func):
     @functools.wraps(func)
     def newfunc(*args, **kwargs):
@@ -15,7 +14,6 @@ def timeIt(func):
                 func.__name__, int(elapsedTime * 1000)))
             del newfunc._entered
     return newfunc
-
 
 @timeIt
 def mergeSort(L):
@@ -51,7 +49,7 @@ def selectionSort(L):
         min_i = i
         for right in range(i + 1, len(L)):
             if L[right] < L[min_i]:
-                min_index = right
+                min_i = right
     L[i], L[min_i] = L[min_i], L[i]
 
 
@@ -67,7 +65,7 @@ def bubbleSort(L):
                 issorted = False
 
 
-randomList = random.sample(range(50000), 50000)
+randomList = random.sample(range(5000), 5000)
 
 mergeSort(randomList.copy())
 selectionSort(randomList.copy())
